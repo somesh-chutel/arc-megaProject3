@@ -1,0 +1,13 @@
+.my-nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    background-color: darkgrey;
+    padding: 15px;
+}
+
+
+.header-logo{
+    width: 120px;
+}

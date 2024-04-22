@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookies';
 import "./index.css";
 
+
 const Login = () => {
+  const navigate = useNavigate();
+  const token = Cookies.getItem("jwtToken");
+
   const [allValues,setValues] = useState({
-      username:"somesh",
-      password:"somesh@123"
+      username:"",
+      password:"",
+      errorMsg:""
   });
 
   const onSubmitDetails = async(e) => {
@@ -13,13 +20,12 @@ const Login = () => {
     //Response ok----->Redirect to Home
     //Response Failed--->Error Msg To user
 
-    console.log(`${allValues.username}, ${allValues.password}`);
 
     const url = "https://apis.ccbp.in/login";
 
     const userDetails = {
-      username: "rahul",
-      password: "rahul@2021",
+      username: allValues.username,
+      password: allValues.password,
     };
 
     const options = {
@@ -29,13 +35,33 @@ const Login = () => {
 
     const response = await fetch(url,options);
     const fetchData = await response.json()
-    console.log(fetchData);
+    console.log(fetchData)
+    if(response.ok===true){
+        Cookies.setItem("jwtToken",fetchData.jwt_token)
+        setValues({...allValues,errorMsg:""});
+        navigate("/");
+    }
+    else{
+        setValues({...allValues,errorMsg:fetchData.error_msg});
+    }
 
 
 
   };
 
+  const onChangeUsername = (event)=>{
+    setValues({...allValues,username:event.target.value})
+  }
 
+  const onChangePassword = (event)=>{
+    setValues({...allValues,password:event.target.value})
+  }
+
+  useEffect(()=>{
+    if(token !== null){
+      navigate("/")
+    }
+  },[])
 
   return (
     <div className="login-cont">
@@ -52,6 +78,7 @@ const Login = () => {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            onChange={onChangeUsername}
           />
         </div>
         <div className="form-group mb-4  w-100">
@@ -60,12 +87,14 @@ const Login = () => {
             type="password"
             className="form-control"
             id="exampleInputPassword1"
+            onChange={onChangePassword}
           />
         </div>
         <div className="btn-cont">
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
+          <p className="e-msg">{allValues.errorMsg}</p>
         </div>
       </form>
     </div>

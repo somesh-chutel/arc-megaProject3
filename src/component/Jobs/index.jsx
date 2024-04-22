@@ -1,4 +1,20 @@
-const Jobs = ()=><h1>Jobs Page</h1>
+import Header from "../Header";
+
+const Jobs = ()=>{
+
+
+
+    return (
+            <>
+                <Header/>
+
+                <h1>Jobs Page</h1>
+            
+            
+            </>
+
+    )
+}
 
 
 
