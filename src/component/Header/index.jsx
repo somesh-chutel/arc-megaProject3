@@ -4,42 +4,36 @@ import './index.css'
 
 const Header = ()=>{
 
+    return (
+        <div className='nav-bar-cont'>
 
-    return(
+            <ul className='nav-bar'>
+                <li>
+                    <Link to="/">
+                    <img className='nav-logo' src="https://assets.ccbp.in/frontend/react-js/logo-img.png" alt="web logo" />
+                    </Link>
+                </li>
 
-            <nav>
+                <li>    
+                    <Link className='n-link' to="/">
+                        Home
+                    </Link>
+                    <Link className='n-link' to="/jobs">
+                    jobs
+                    </Link>
+                </li>
 
-                    <ul className='my-nav'>
-                            <li>
-                                <Link to="/">
-                                    <img src="https://assets.ccbp.in/frontend/react-js/logo-img.png" className='header-logo' alt="web logo" />
-                                </Link>
-                            </li>
+                <li>
+                    <button className='btn btn-primary'>Logout</button>
+                </li>
 
-                            <li>
-                                <Link to="/">
-                                Home
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/jobs">
-                                    Jobs
-                                </Link>
+            </ul>
 
-                            </li>
-
-
-                            <li>
-                                <button className='btn btn-primary'>Logout</button>
-                            </li>
-        
-
-                    </ul>
-
-            </nav>
+        </div>
 
     )
 }
+
 
 
 

@@ -1,0 +1,21 @@
+.jobs-cont{
+    background-color: black;
+}
+
+.jobs-section{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+
+}
+.filter-section{
+    width: 25%;
+    height: 100vh;
+    border: 1px solid white;
+}
+.all-jobs-section{
+    width: 70%;
+    height: 100vh;
+    border: 1px solid white;
+
+}
